@@ -4,7 +4,7 @@
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 npm install
 
@@ -21,6 +21,7 @@ npm run build --report
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 ## 包解释
+
 |-- build                            // 项目构建(webpack)相关代码
 |   |-- build.js                     // 生产环境构建代码
 |   |-- check-version.js             // 检查node、npm等版本
@@ -47,7 +48,9 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 |-- index.html                       // 入口页面
 |-- package.json                     // 项目基本信息,包依赖信息等
 
+add
 
 ## 问题
+
 1. 点击左栏，右栏相应地进行后端信息获取并显示？
 2. login之后的页面跳转如何操作？即，母页除了跳转的按钮还有其他一些内容，如何在转到Student，Teacher，Admin等页面之后，不保留母页的这些内容？
