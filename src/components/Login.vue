@@ -6,12 +6,16 @@
 	  </el-header> -->
       <el-container>
         <el-aside width="500px">
-			<!-- <img src="../assets/leftlogin.jpg" alt="..." width="400px" height = "600px" justify="center"> -->
-		</el-aside>
+          <!-- <img src="../assets/leftlogin.jpg" alt="..." width="400px" height = "600px" justify="center"> -->
+        </el-aside>
         <el-main>
-		  <el-header>
-			  <img id="header-img" src="https://passport.ustc.edu.cn/images/ucas/logo.svg" height="125px">
-		  </el-header>
+          <el-header>
+            <img
+              id="header-img"
+              src="https://passport.ustc.edu.cn/images/ucas/logo.svg"
+              height="125px"
+            />
+          </el-header>
           <div class="login-wrap">
             <el-row type="flex" justify="center">
               <el-form
@@ -37,8 +41,12 @@
                     placeholder="请输入密码"
                   ></el-input>
                 </el-form-item>
-                <router-link to="/">找回密码</router-link>
-                <router-link to="/register">注册账号</router-link>
+                <div>
+                  <span>您的身份</span>
+                  <el-radio v-model="position" label="1">student</el-radio>
+                  <el-radio v-model="position" label="2">teacher</el-radio>
+				  <el-radio v-model="position" label="3">admin</el-radio>
+                </div>
                 <el-form-item>
                   <el-button
                     type="primary"
@@ -63,19 +71,22 @@ export default {
   data() {
     return {
       user: {
-        msg: 'Welcome to Your USTC-Acid-DB App',
+        msg: "Welcome to Your USTC-Acid-DB App",
         idstudents: "",
         password: "",
       },
+	  position: "1"
     };
   },
-  created() {this.doLogin();},
+  created() {
+    this.doLogin();
+  },
   methods: {
     doLogin() {
       let params = {
         idstudents: this.user.idstudents,
-        password: this.user.password,
-      }
+        password: this.user.password
+      };
       if (!this.user.idstudents) {
         this.$message.error("请输入用户名！");
         return;
@@ -83,15 +94,17 @@ export default {
         this.$message.error("请输入密码！");
         return;
       } else {
-          //校验用户名和密码是否正确;
+        //校验用户名和密码是否正确;
         //this.$router.push({ path: "/Student" });
         this.$message.success("准备去query");
         //var name = this.idstudents;
         //var passw = this.password;
-            this.$http.post('http://localhost:3000/api/stu/query', { params: params }).then((response) => {
+        this.$http
+          .post("http://localhost:3000/api/stu/query", { params: params })
+          .then(response => {
             //this.$message.success("登录成功！");
-            console.log(response)
-            console.log('--------')
+            console.log(response);
+            console.log("--------");
             //this.$router.push({ path: "/Student" });
             if (response.data.status == 200) {
               this.$router.push({ path: "/Student" });
@@ -100,8 +113,8 @@ export default {
             }
           });
       }
-    },
-  },
+    }
+  }
 };
 </script>
 <!-- http://localhost:3000/api/stu/query -->
@@ -146,37 +159,38 @@ a:hover {
   width: 80%;
   margin-left: -50px;
 }
-  .el-header, .el-footer {
-    background-color: #ffffff;
-    color: #333;
-    text-align: center;
-    line-height: 60px;
-  }
-  
-  .el-aside {
-    /* background-color: #ffffff;
+.el-header,
+.el-footer {
+  background-color: #ffffff;
+  color: #333;
+  text-align: center;
+  line-height: 60px;
+}
+
+.el-aside {
+  /* background-color: #ffffff;
     color: #333; */
-    text-align: center;
-    line-height: 400px;
-  }
-  
-  .el-main {
-    background-color: #ffffff;
-    color: #333;
-    text-align: center;
-    line-height: 160px;
-  }
-  
-  body > .el-container {
-    margin-bottom: 40px;
-  }
-  
-  .el-container:nth-child(5) .el-aside,
-  .el-container:nth-child(6) .el-aside {
-    line-height: 260px;
-  }
-  
-  .el-container:nth-child(7) .el-aside {
-    line-height: 320px;
-  }
+  text-align: center;
+  line-height: 400px;
+}
+
+.el-main {
+  background-color: #ffffff;
+  color: #333;
+  text-align: center;
+  line-height: 160px;
+}
+
+body > .el-container {
+  margin-bottom: 40px;
+}
+
+.el-container:nth-child(5) .el-aside,
+.el-container:nth-child(6) .el-aside {
+  line-height: 260px;
+}
+
+.el-container:nth-child(7) .el-aside {
+  line-height: 320px;
+}
 </style>
