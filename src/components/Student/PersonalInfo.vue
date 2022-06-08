@@ -9,9 +9,6 @@
           border
           justify="center"
         >
-          <el-descriptions-item label="用户名"
-            ><el-tag size="middle">PB020000326</el-tag></el-descriptions-item
-          >
           <el-descriptions-item label="每日报备状态"
             ><el-tag size="small">今日已报备/今日未报备</el-tag></el-descriptions-item
           >
