@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // 后端api路由
 
 app.use('/api/stu', stuApi)
-
+app.use('/api/fever', fever_Api)
 // 监听端口
 app.listen(3000)
 console.log('success listen at port:3000......')

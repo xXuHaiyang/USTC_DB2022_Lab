@@ -37,8 +37,6 @@
                     placeholder="请输入密码"
                   ></el-input>
                 </el-form-item>
-                <router-link to="/">找回密码</router-link>
-                <router-link to="/register">注册账号</router-link>
                 <el-form-item>
                   <el-button
                     type="primary"
