@@ -10,19 +10,26 @@
           justify="center"
         >
           <el-descriptions-item label="每日报备状态"
-            ><el-tag size="small">今日已报备/今日未报备</el-tag></el-descriptions-item
+            ><el-tag size="small"
+              >今日已报备/今日未报备</el-tag
+            ></el-descriptions-item
           >
           <el-descriptions-item label="健康码状态" :span="2"
-            ><el-tag size="small">今日已提交/今日未提交</el-tag></el-descriptions-item
+            ><el-tag size="small"
+              >今日已提交/今日未提交</el-tag
+            ></el-descriptions-item
           >
           <el-descriptions-item label="行程码状态">
             <el-tag size="small">今日已提交/今日未提交</el-tag>
           </el-descriptions-item>
           <el-descriptions-item label="核酸状态"
-            ><el-tag size="small">本周已提交/本周未提交</el-tag></el-descriptions-item
+            ><el-tag size="small"
+              >本周已提交/本周未提交</el-tag
+            ></el-descriptions-item
           >
-		  <el-descriptions-item label="是否可跨校区"
-			><el-tag size="small">是/否</el-tag></el-descriptions-item>
+          <el-descriptions-item label="是否可跨校区"
+            ><el-tag size="small">是/否</el-tag></el-descriptions-item
+          >
           <el-descriptions-item label="是否可进出校">
             <el-tag size="small">未申请/审核中/审核通过/审核未通过</el-tag>
           </el-descriptions-item>

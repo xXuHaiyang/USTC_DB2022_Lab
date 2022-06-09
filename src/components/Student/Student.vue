@@ -16,6 +16,8 @@
       <span>PB020000326</span>
     </el-header>
     </el-container>
+	<br>
+	<br>
     <el-container style="height: 668px; border: 1px solid #eee">
       <el-aside width="250px">
         <el-menu :default-openeds="['1', '3']">
@@ -80,14 +82,9 @@
 export default {
   name: "student",
   data() {
-    const item = {
-      date: "2016-05-02",
-      name: "王小虎",
-      address: "上海市普陀区金沙江路 1518 弄"
-    };
     return {
-      tableData: Array(20).fill(item)
-    };
+	  //
+	};
   }
 };
 </script>
