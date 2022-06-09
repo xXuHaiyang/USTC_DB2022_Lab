@@ -6,8 +6,8 @@ var sqlMap = {
       add: 'insert into students (idstudents, password) values (?,?)',
       jiankangma: 'insert into students (jiankangma) values (?) where idstudents=? and password=?',
       xingchengma: 'insert into students (xingchengma) values (?) where idstudents=? and password=?',
-  }
-    fever:{
+  },
+  fever:{
     check: 'insert into fever (idstudents, fever_or_not) values (?,?)',
   }
 

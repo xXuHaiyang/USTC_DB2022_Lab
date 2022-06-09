@@ -2,6 +2,7 @@
 //index.js——Express 服务器入口文件
 
 const stuApi = require('./api/stuApi')
+const fever_Api = require('./api/fever_Api')
 const fs = require('fs')
 const path = require('path')
 const bodyParser = require('body-parser')

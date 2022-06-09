@@ -14,7 +14,7 @@ Vue.use(ElementUI);
 new Vue({
   el: "#app", // el用于指定当前Vue示例为哪个容器服务
   router,
-  render: h => h(App)
+  render: h => h(App),
 });
 // 此处需要use后，this.$http.get或者this.$http.post才可以
 Vue.use(VueRouter)

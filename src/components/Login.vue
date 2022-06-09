@@ -41,12 +41,15 @@
                     placeholder="请输入密码"
                   ></el-input>
                 </el-form-item>
+<<<<<<< HEAD
+=======
                 <div>
                   <span>您的身份</span>
                   <el-radio v-model="position" label="1">student</el-radio>
                   <el-radio v-model="position" label="2">teacher</el-radio>
-				          <el-radio v-model="position" label="3">admin</el-radio>
+				        <el-radio v-model="position" label="3">admin</el-radio>
                 </div>
+>>>>>>> 667b1a8cac376bf701ec63658831e1f5dddc252a
                 <el-form-item>
                   <el-button
                     type="primary"
