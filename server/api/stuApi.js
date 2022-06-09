@@ -79,28 +79,27 @@ router.post('/query',(req,res)=>{
     })
 });
 
-router.get('/login',(req,res)=>{
-    var sql = 'select * from students where idstudents = ? and password = ?'
-    conn.query(sql, [req.query.name, req.query.password], (err, data) => {
-        if(err) {
-            return res.send({
-              status: 400,
-              message: "登录失败"
-            })
-        }
-        
-        if(data.length > 0) {
+// 增加用户接口
+router.post('/addfever', (req, res) => {
+  var sql = $sql.fever.check;
+  var params = req.body;
+  //console.log(params);
+  var obj=JSON.stringify(params);
+  //console.log(obj);
+  let idstudents=obj.substring(obj.indexOf("ts\":")+5,obj.indexOf(",")-1);
+  let check=1;
+  conn.query(sql, [idstudents, check], function (err, result) {
+      if (err) {
+          console.log(err);
+      }
+      if (result) {
+          jsonWrite(res, result);
           res.send({
             status: 200,
             message: "登录成功"
           })
-        }else{
-          res.send({
-            status: 202,
-            message: '用户名或密码错误'
-          })
-        }
-    })
+      }
+  })
 });
 module.exports = router;
 
