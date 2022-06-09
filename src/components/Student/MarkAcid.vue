@@ -1,9 +1,23 @@
 <template>
   <div>
+    <el-upload
+      class="upload-demo"
+      action="https://jsonplaceholder.typicode.com/posts/"
+      :on-preview="handlePreview"
+      :on-remove="handleRemove"
+      :before-remove="beforeRemove"
+      multiple
+      :limit="3"
+      :on-exceed="handleExceed"
+      :file-list="fileList"
+    >
       <el-button size="middle" type="primary">点击上传健康码</el-button>
       <div slot="tip" class="el-upload__tip">
         只能上传jpg/png文件，且不超过500kb
-		<el-upload
+      </div>
+    </el-upload>
+    <br />
+    <el-upload
       class="upload-demo"
       action="https://jsonplaceholder.typicode.com/posts/"
       :on-preview="handlePreview"
@@ -14,13 +28,13 @@
       :on-exceed="handleExceed"
       :file-list="fileList"
     >
-	  </el-upload>
-	  </div>
-	  <br>
-	  <el-button size="middle" type="primary">点击上传15天内行程码</el-button>
+      <el-button size="middle" type="primary">点击上传15天内行程码</el-button>
       <div slot="tip" class="el-upload__tip">
         只能上传jpg/png文件，且不超过500kb
-		<el-upload
+      </div>
+    </el-upload>
+    <br />
+    <el-upload
       class="upload-demo"
       action="https://jsonplaceholder.typicode.com/posts/"
       :on-preview="handlePreview"
@@ -31,37 +45,22 @@
       :on-exceed="handleExceed"
       :file-list="fileList"
     >
-	  </el-upload>
-	  </div>
-	  <br>
-	  <el-button size="middle" type="primary">点击上传核酸检测证明</el-button>
+      <el-button size="middle" type="primary">点击上传核酸检测证明</el-button>
       <div slot="tip" class="el-upload__tip">
         只能上传jpg/png/pdf文件，且不超过2Mb
-		<el-upload
-      class="upload-demo"
-      action="https://jsonplaceholder.typicode.com/posts/"
-      :on-preview="handlePreview"
-      :on-remove="handleRemove"
-      :before-remove="beforeRemove"
-      multiple
-      :limit="3"
-      :on-exceed="handleExceed"
-      :file-list="fileList"
-    >
-	  </el-upload>
-	  </div>
-	  <br>
+      </div>
+    </el-upload>
+    <br />
   </div>
 </template>
+
+// 注意，此处我的文件上传接口是前端逻辑，后端连接时需要在fileList中提取文件（如：直接提取文件名，将文件名提取出来，提交给后端，检查没问题直接数据库赋值1）
+
 <script>
 export default {
   data() {
     return {
-      fileList: [
-        {
-          
-        },
-      ]
+      fileList: []
     };
   },
   methods: {
