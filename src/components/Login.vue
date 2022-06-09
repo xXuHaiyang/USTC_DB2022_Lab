@@ -41,15 +41,12 @@
                     placeholder="请输入密码"
                   ></el-input>
                 </el-form-item>
-<<<<<<< HEAD
-=======
                 <div>
                   <span>您的身份</span>
                   <el-radio v-model="position" label="1">student</el-radio>
                   <el-radio v-model="position" label="2">teacher</el-radio>
 				        <el-radio v-model="position" label="3">admin</el-radio>
                 </div>
->>>>>>> 667b1a8cac376bf701ec63658831e1f5dddc252a
                 <el-form-item>
                   <el-button
                     type="primary"
@@ -78,7 +75,7 @@ export default {
         idstudents: "",
         password: "",
       },
-	  position: "1"
+	  position: ""
     };
   },
   created() {
@@ -95,6 +92,9 @@ export default {
         return;
       } else if (!this.user.password) {
         this.$message.error("请输入密码！");
+        return;
+      } else if(this.position != 1){
+        this.$message.error("请作为学生登录");
         return;
       } else {
         //校验用户名和密码是否正确;
