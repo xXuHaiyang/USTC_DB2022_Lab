@@ -91,14 +91,10 @@ export default {
     return {
       ruleForm: {
         name: "",
-        fromregion: "",
-        toregion: "",
-        date1: "",
-        date2: "",
-        delivery: false,
-        type: [],
-        resource: "",
-        desc: ""
+        fromregion: "", //出校校区
+        toregion: "", // 前往校区
+        type: [], //出校理由
+        desc: ""  // 其他的理由
       }
     };
   },
