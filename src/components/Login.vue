@@ -1,5 +1,7 @@
 <template>
   <div class="login">
+  <div class="parent">
+    <Children  :idstudents="idstudents" >
     <el-container>
       <!-- <el-header height="200px">
         <img src="../assets/USTClogo.jpg" alt="">
@@ -56,18 +58,25 @@
                   >
                 </el-form-item>
               </el-form>
+              <!-- 此处引入组件 -->
             </el-row>
           </div>
         </el-main>
       </el-container>
     </el-container>
+    </Children>
+  </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import DailyCheck from './Student/DailyCheck'
 export default {
   name: "login",
+  components: {
+    DailyCheck,
+  },
   data() {
     return {
       user: {
@@ -87,6 +96,7 @@ export default {
         idstudents: this.user.idstudents,
         password: this.user.password
       };
+      //export default params;
       if (!this.user.idstudents) {
         this.$message.error("请输入用户名！");
         return;
@@ -94,8 +104,24 @@ export default {
         this.$message.error("请输入密码！");
         return;
       } else if(this.position != 1){
-        this.$message.error("请作为学生登录");
-        return;
+        //校验用户名和密码是否正确;
+        //this.$router.push({ path: "/Student" });
+        this.$message.success("准备去query");
+        //var name = this.idstudents;
+        //var passw = this.password;
+        this.$http
+          .post("http://localhost:3000/api/stu/teacher", { params: params })
+          .then(response => {
+            //this.$message.success("登录成功！");
+            console.log(response);
+            console.log("--------");
+            //this.$router.push({ path: "/Student" });
+            if (response.status == 200) {
+              this.$router.push({ path: "/Teacher" });
+            } else {
+              this.$message.error("您输入的用户名或密码错误！");
+            }
+          });
       } else {
         //校验用户名和密码是否正确;
         //this.$router.push({ path: "/Student" });

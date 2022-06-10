@@ -1,4 +1,5 @@
 <template>
+   <section>
   <div>
 	  <br>
 	  <br>
@@ -21,21 +22,30 @@
     </div>
 	<br>
   </div>
+  </section>
 </template>
-
 <script>
+//import idstu from '../Login'
+//let idstudents=idstu.user.idstudents
 export default {
+  name : "DailyCheck",
+  components : {},
+  prop : ['idstudents'],
   data() {
     return {
+      user: {
+        idstudents: this.user.idstudents,
+      },
       atschool: "",
       fever: "",
-      check: ""
+      check: "",
     };
   },
   created() {this.update_fever();},
   methods: {
     update_fever() {
       let params = {
+        idstudents: this.idstudents,
         atschool: this.atschool,
         fever: this.fever,
         check: this.check,
@@ -50,7 +60,7 @@ export default {
         this.$message.error("请选择是否要报备！");
         return;
       } else {
-        axios.post("/api/fever/check", params).then(res => {
+        axios.post("/api/stu/addfever", params).then(res => {
           if (res.data.code == 200) {
             this.$message.success("提交成功！");
           } else {

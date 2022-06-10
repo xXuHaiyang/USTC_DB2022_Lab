@@ -6,30 +6,30 @@
         <el-form-item label="姓名" :label-width="formLabelWidth">
           <el-input v-model="form.name" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="id" :label-width="formLabelWidth">
-          <el-input v-model="form.id" autocomplete="off"></el-input>
+        <el-form-item label="学号" :label-width="formLabelWidth">
+          <el-input v-model="form.idstudents" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="性别" :label-width="formLabelWidth">
-          <el-input v-model="form.sex" autocomplete="off"></el-input>
+          <el-input v-model="form.gender" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="所属学院" :label-width="formLabelWidth">
-          <el-input v-model="form.school" autocomplete="off"></el-input>
+          <el-input v-model="form.college" autocomplete="off"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="AddNew = false">取 消</el-button>
-        <el-button type="primary" @click="AddNew = false">确 定</el-button>
+        <el-button type="primary" @click="newperson(); AddNew = false">确 定</el-button>
       </div>
     </el-dialog>
 	<!-- 此处我只实现了前端的数据传输(v-model)，放在data里，需要传到后端的table中去 -->
-
+<el-button type="success" @click="uploadtoDatatable()">查看所有学生</el-button>
     <br />
     <br />
     <el-table :data="tableData" stripe style="width: 100%">
-      <el-table-column prop="id" label="学号" width="180"> </el-table-column>
+      <el-table-column prop="idstudents" label="学号" width="180"> </el-table-column>
       <el-table-column prop="name" label="姓名" width="180"> </el-table-column>
-      <el-table-column prop="sex" label="性别" width="180"> </el-table-column>
-      <el-table-column prop="school" label="所属院系" width="180">
+      <el-table-column prop="gender" label="性别" width="180"> </el-table-column>
+      <el-table-column prop="college" label="所属院系" width="180">
       </el-table-column>
       <el-table-column fixed="right" label="操作" width="120">
         <template slot-scope="scope">
@@ -49,151 +49,66 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
-  methods: {
-    deleteRow(index, rows) {
-      rows.splice(index, 1);
-    },
-    newperson() {
-      this.$message({
-        message: "新增成功",
-        type: "success"
-      });
-    }
-  },
   data() {
     return {
       tableData: [
         {
-          id: "PB20000326",
-          name: "徐海阳",
-          sex: "男",
-          school: "少年班学院"
-        },
-        {
-          id: "PB20000326",
-          name: "徐海阳",
-          sex: "男",
-          school: "少年班学院"
-        },
-        {
-          id: "PB20000326",
-          name: "徐海阳",
-          sex: "男",
-          school: "少年班学院"
-        },
-        {
-          id: "PB20000326",
-          name: "徐海阳",
-          sex: "男",
-          school: "少年班学院"
-        },
-        {
-          id: "PB20000326",
-          name: "徐海阳",
-          sex: "男",
-          school: "少年班学院"
-        },
-        {
-          id: "PB20000326",
-          name: "徐海阳",
-          sex: "男",
-          school: "少年班学院"
-        },
-        {
-          id: "PB20000326",
-          name: "徐海阳",
-          sex: "男",
-          school: "少年班学院"
-        },
-        {
-          id: "PB20000326",
-          name: "徐海阳",
-          sex: "男",
-          school: "少年班学院"
-        },
-        {
-          id: "PB20000326",
-          name: "徐海阳",
-          sex: "男",
-          school: "少年班学院"
-        },
-        {
-          id: "PB20000326",
-          name: "徐海阳",
-          sex: "男",
-          school: "少年班学院"
-        },
-        {
-          id: "PB20000326",
-          name: "徐海阳",
-          sex: "男",
-          school: "少年班学院"
-        },
-        {
-          id: "PB20000326",
-          name: "徐海阳",
-          sex: "男",
-          school: "少年班学院"
-        },
-        {
-          id: "PB20000326",
-          name: "徐海阳",
-          sex: "男",
-          school: "少年班学院"
-        },
-        {
-          id: "PB20000326",
-          name: "徐海阳",
-          sex: "男",
-          school: "少年班学院"
-        },
-        {
-          id: "PB20000326",
-          name: "徐海阳",
-          sex: "男",
-          school: "少年班学院"
-        },
-        {
-          id: "PB20000326",
-          name: "徐海阳",
-          sex: "男",
-          school: "少年班学院"
-        },
-        {
-          id: "PB20000326",
-          name: "徐海阳",
-          sex: "男",
-          school: "少年班学院"
-        },
-        {
-          id: "PB20000326",
-          name: "徐海阳",
-          sex: "男",
-          school: "少年班学院"
-        },
-        {
-          id: "PB20000326",
-          name: "徐海阳",
-          sex: "男",
-          school: "少年班学院"
-        },
-        {
-          id: "PB20000326",
-          name: "徐海阳",
-          sex: "男",
-          school: "少年班学院"
+          idstudents: "",
+          name: "",
+          gender: "",
+          college: ""
         }
       ],
       AddNew: false,
       form: {
-        id: "",
+        idstudents: "",
         name: "",
-        sex: "",
-        school: ""
+        gender: "",
+        college: ""
       },
       formLabelWidth: "120px"
     };
-  }
-};
+  },
+  created() {
+    this.uploadtoDatatable();
+    this.deleteRow();
+    this.newperson();
+  },
+  methods: {
+    uploadtoDatatable(){
+      let params = {};
+      this.$http.post("http://localhost:3000/api/stu/getStu",{ params: params}).then(res => {
+        console.log(res);
+        this.tableData = res.data;
+      });
+    },
+    deleteRow(index, rows) {
+      rows.splice(index, 1);
+    },
+    newperson() {
+      //rows.add(index,1);
+      let params = {
+        idstudents: this.form.idstudents,
+        name: this.form.name,
+        gender: this.form.gender,
+        college: this.form.college,
+      };
+      this.$http
+          .post("http://localhost:3000/api/stu/addStu", { params: params })
+          .then(response => {
+            //this.$message.success("登录成功！");
+            console.log(response);
+            console.log("--------");
+            //this.$router.push({ path: "/Student" });
+            if (response.data.code == 200) {
+              this.$message.success("新增成功");
+            } else {
+              this.$message.error("有错误，重启后端，但是已经插入了");
+            }
+          });
+    }
+},
+}
 </script>

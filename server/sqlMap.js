@@ -3,12 +3,18 @@
 var sqlMap = {
   stu: {
       query: 'select * from students where idstudents=? and password=?',
-      add: 'insert into students (idstudents, password) values (?,?)',
+      add: 'insert into students (idstudents, name, gender,college) values (?,?,?,?)',
       jiankangma: 'insert into students (jiankangma) values (?) where idstudents=? and password=?',
       xingchengma: 'insert into students (xingchengma) values (?) where idstudents=? and password=?',
+      teacher: 'select * from teachers where idteachers=? and password=?',
+      getStu: 'SELECT idstudents,gender,name,college  FROM students',
   },
   fever:{
     check: 'insert into fever (idstudents, fever_or_not) values (?,?)',
+  },
+  teacher:{
+    add: 'insert into students (name, idstudents, password,gender) values (?,?,?,?)',
+    drop: 'delete * from students where idstudents=?',
   }
 
 }
