@@ -117,9 +117,9 @@ router.post('/teacher',(req,res)=>{
         }
     })
 });
-router.post('getStu',(req,res)=>{
+router.post('/getStu',(req,res)=>{
   var sql = $sql.stu.getStu;
-  var params = req.body;
+  //var params = req.body;
   conn.query(sql, function(err,data){
       if(err){
            console.log(err)    
@@ -130,12 +130,13 @@ router.post('getStu',(req,res)=>{
       }
       //console.log(typeof row)
       //let data = JSON.stringify(row)
+      //console.log(data)
+      //var data= JSON.stringify(data)
       console.log(data)
-      //let data= JSON.stringify(data)
       if(data.length>0){
       //res.end(data)
       res.send({
-          data: data,
+          data,
           status: 200,
           message: "获取成功",
       })

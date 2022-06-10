@@ -18,7 +18,7 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="AddNew = false">取 消</el-button>
-        <el-button type="primary" @click="newperson(); AddNew = false">确 定</el-button>
+        <el-button type="primary" @click="newperson();uploadtoDatatable(); AddNew = false">确 定</el-button>
       </div>
     </el-dialog>
 	<!-- 此处我只实现了前端的数据传输(v-model)，放在data里，需要传到后端的table中去 -->
@@ -78,10 +78,11 @@ export default {
   },
   methods: {
     uploadtoDatatable(){
-      let params = {};
-      this.$http.post("http://localhost:3000/api/stu/getStu",{ params: params}).then(res => {
+      //let params = {};
+      this.$http.post("http://localhost:3000/api/stu/getStu").then(res => {
         console.log(res);
-        this.tableData = res.data;
+        console.log(res.body.data);
+        this.tableData = res.body.data;
       });
     },
     deleteRow(index, rows) {

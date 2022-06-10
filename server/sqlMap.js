@@ -7,7 +7,7 @@ var sqlMap = {
       jiankangma: 'insert into students (jiankangma) values (?) where idstudents=? and password=?',
       xingchengma: 'insert into students (xingchengma) values (?) where idstudents=? and password=?',
       teacher: 'select * from teachers where idteachers=? and password=?',
-      getStu: 'SELECT idstudents,gender,name,college  FROM students',
+      getStu: 'select idstudents,gender,name,college  from students',
   },
   fever:{
     check: 'insert into fever (idstudents, fever_or_not) values (?,?)',

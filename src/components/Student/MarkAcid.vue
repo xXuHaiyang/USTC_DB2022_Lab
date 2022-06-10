@@ -11,7 +11,7 @@
       :on-exceed="handleExceed"
       :file-list="fileList"
     >
-      <el-button size="middle" type="primary">点击上传健康码</el-button>
+      <el-button size="middle" type="primary" @click="jiankangma()">点击上传健康码</el-button>
       <div slot="tip" class="el-upload__tip">
         只能上传jpg/png文件，且不超过500kb
       </div>
@@ -28,7 +28,7 @@
       :on-exceed="handleExceed"
       :file-list="fileList"
     >
-      <el-button size="middle" type="primary">点击上传15天内行程码</el-button>
+      <el-button size="middle" type="primary" @click="xingchengma()">点击上传15天内行程码</el-button>
       <div slot="tip" class="el-upload__tip">
         只能上传jpg/png文件，且不超过500kb
       </div>
@@ -45,7 +45,7 @@
       :on-exceed="handleExceed"
       :file-list="fileList"
     >
-      <el-button size="middle" type="primary">点击上传核酸检测证明</el-button>
+      <el-button size="middle" type="primary" @click="hesuan()">点击上传核酸检测证明</el-button>
       <div slot="tip" class="el-upload__tip">
         只能上传jpg/png/pdf文件，且不超过2Mb
       </div>
@@ -79,7 +79,16 @@ export default {
     },
     beforeRemove(file, fileList) {
       return this.$confirm(`确定移除 ${file.name}？`);
-    }
+    },
+    jiankangma(){
+
+    },
+    xingchengma(){
+
+    },
+    hesuan(){
+
+    },
   }
 };
 </script>
