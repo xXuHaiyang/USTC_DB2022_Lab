@@ -136,6 +136,7 @@ export default {
             console.log("--------");
             //this.$router.push({ path: "/Student" });
             if (response.data.status == 200) {
+              localStorage.setItem("idstudents", JSON.stringify(this.user.idstudents));
               this.$router.push({ path: "/Student" });
             } else {
               this.$message.error("您输入的用户名或密码错误！");

@@ -1,8 +1,5 @@
 <template>
   <div>
-    <el-button type="success" @click="uploadtoDatatable()"
-      >查看所有学生状态</el-button
-    >
     <br />
     <br />
     <el-table :data="tableData" stripe style="width: 100%">
@@ -13,13 +10,16 @@
       </el-table-column>
       <el-table-column prop="college" label="所属院系" width="150">
       </el-table-column>
-	  <el-table-column prop="health" label="健康码" width="150">
+	  <el-table-column prop="jiankangma" label="健康码" width="150">
       </el-table-column>
-	  <el-table-column prop="way" label="行程码" width="150">
+	  <el-table-column prop="xingchengma" label="行程码" width="150">
       </el-table-column>
-	  <el-table-column prop="acid" label="核酸状态" width="150">
+	  <el-table-column prop="hesuan" label="核酸状态" width="150">
       </el-table-column>
     </el-table>
+    <el-button type="success" @click="uploadtoDatatable()"
+      >查看所有学生状态</el-button
+    >
   </div>
 </template>
 
@@ -41,9 +41,9 @@ export default {
           name: "",
           gender: "",
           college: "",
-		  health: "",
-		  way:"",
-		  acid:""
+		      jiankangma:"",
+          xingchengma: "",
+		      hesuan:""
         }
       ],
       AddNew: false,
@@ -51,7 +51,10 @@ export default {
         idstudents: "",
         name: "",
         gender: "",
-        college: ""
+        college: "",
+        xingchengma: "",
+		    jiankangma:"",
+		    hesuan:""
       },
       formLabelWidth: "120px"
     };
@@ -59,43 +62,22 @@ export default {
   created() {
     this.uploadtoDatatable();
     this.deleteRow();
-    this.newperson();
+    //this.newperson();
   },
   methods: {
     uploadtoDatatable() {
       let params = {};
       this.$http
-        .post("http://localhost:3000/api/stu/getStu", { params: params })
+        .post("http://localhost:3000/api/stu/checking", { params: params })
         .then(res => {
           console.log(res);
-          this.tableData = res.data;
+          console.log(res.body.data);
+          this.tableData = res.body.data;
         });
     },
     deleteRow(index, rows) {
       rows.splice(index, 1);
     },
-    newperson() {
-      //rows.add(index,1);
-      let params = {
-        idstudents: this.form.idstudents,
-        name: this.form.name,
-        gender: this.form.gender,
-        college: this.form.college
-      };
-      this.$http
-        .post("http://localhost:3000/api/stu/addStu", { params: params })
-        .then(response => {
-          //this.$message.success("登录成功！");
-          console.log(response);
-          console.log("--------");
-          //this.$router.push({ path: "/Student" });
-          if (response.data.code == 200) {
-            this.$message.success("新增成功");
-          } else {
-            this.$message.error("有错误，重启后端，但是已经插入了");
-          }
-        });
-    }
   }
 };
 </script>

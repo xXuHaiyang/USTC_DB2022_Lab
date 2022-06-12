@@ -10,10 +10,6 @@
       </el-header>
 	  <br>
 	  <el-header style="text-align: right; font-size: 18px">
-      <el-dropdown>
-        <i class="el-icon-setting" style="margin-right: 18px"></i>
-      </el-dropdown>
-      <span>PB020000326</span>
     </el-header>
     </el-container>
 	<br>
@@ -80,11 +76,23 @@
 
 <script>
 export default {
-  name: "student",
   data() {
-    return {
-	  //
-	};
-  }
+  return {
+  name: "student",
+  tableData: [
+        {
+          idstudents: "",
+    }
+      ],
 };
+  },
+  created() {
+    this.getIDstu();
+  },
+  methods: {
+    getIDstu() { 
+          this.$message.success(localStorage.getItem("idstudents"))
+    },
+  }
+}
 </script>

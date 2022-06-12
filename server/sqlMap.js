@@ -8,9 +8,10 @@ var sqlMap = {
       xingchengma: 'insert into students (xingchengma) values (?) where idstudents=? and password=?',
       teacher: 'select * from teachers where idteachers=? and password=?',
       getStu: 'select idstudents,gender,name,college  from students',
+      checking: 'select idstudents,name,gender,college,xingchengma,jiankangma,hesuan from students',
   },
   fever:{
-    check: 'insert into fever (idstudents, fever_or_not) values (?,?)',
+    check: 'insert into fever_or_not (idstudents, at_school, fever, `check`) values (?,?,?,?)',
   },
   teacher:{
     add: 'insert into students (name, idstudents, password,gender) values (?,?,?,?)',

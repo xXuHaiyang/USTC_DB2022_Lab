@@ -22,19 +22,22 @@
     </div>
 	<br>
   </div>
+  <el-button
+                    type="primary"
+                    icon="el-icon-upload"
+                    @click="update_fever()"
+                    >上传</el-button
+                  >
   </section>
 </template>
 <script>
 //import idstu from '../Login'
 //let idstudents=idstu.user.idstudents
 export default {
-  name : "DailyCheck",
-  components : {},
-  prop : ['idstudents'],
   data() {
     return {
       user: {
-        idstudents: this.user.idstudents,
+        idstudents: localStorage.getItem("idstudents"),
       },
       atschool: "",
       fever: "",
@@ -45,7 +48,7 @@ export default {
   methods: {
     update_fever() {
       let params = {
-        idstudents: this.idstudents,
+        idstudents: this.user.idstudents,
         atschool: this.atschool,
         fever: this.fever,
         check: this.check,
@@ -60,11 +63,11 @@ export default {
         this.$message.error("请选择是否要报备！");
         return;
       } else {
-        axios.post("/api/stu/addfever", params).then(res => {
-          if (res.data.code == 200) {
+        this.$http.post("http://localhost:3000/api/stu/addfever", params).then(res => {
+          if (res.body.status == 200) {
             this.$message.success("提交成功！");
           } else {
-            this.$message.error(res.data.msg);
+            this.$message.error("tmd就是插进去了，后端有Bug");
           }
         });
       }

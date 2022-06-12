@@ -143,17 +143,47 @@ router.post('/getStu',(req,res)=>{
 }})
 }
 );
+router.post('/checking',(req,res)=>{
+  var sql = $sql.stu.checking;
+  //var params = req.body;
+  conn.query(sql, function(err,data){
+      if(err){
+           console.log(err)    
+           return res.send({
+              status: 400,
+              message: "获取失败"
+            })   
+      }
+      //console.log(typeof row)
+      //let data = JSON.stringify(row)
+      //console.log(data)
+      //var data= JSON.stringify(data)
+      console.log(data)
+      if(data.length>0){
+      //res.end(data)
+      res.send({
+          data,
+          status: 200,
+          message: "获取成功",
+      })
+}})
+}
+);
 // 增加用户接口
 router.post('/addfever', (req, res) => {
   var sql = $sql.fever.check;
   var params = req.body;
-  //console.log(params);
+  console.log(params);
   var obj=JSON.stringify(params);
-  //console.log(obj);
-  let idstudents=obj.substring(obj.indexOf("ts\":")+5,obj.indexOf(",")-1);
-  let atschools=obj.substring(obj.indexOf(""));
-  let fever=obj.substring(obj.indexOf(""));
-  let check=obj.substring(obj.indexOf(""));
+  console.log(obj);
+  let idstudents=obj.substring(obj.indexOf("idstudents")+15,obj.indexOf("atschool")-5);
+  console.log(idstudents);
+  let atschools=obj.substring(obj.indexOf("atschool")+11,obj.indexOf("fever")-3);
+  console.log(atschools);
+  let fever=obj.substring(obj.indexOf("fever")+8,obj.indexOf("check")-3);
+  console.log(fever);
+  let check=obj.substring(obj.indexOf("check")+8,obj.indexOf("}")-1);
+  console.log(check);
   conn.query(sql, [idstudents, atschools, fever, check], function (err, result) {
       if (err) {
           console.log(err);
@@ -162,7 +192,7 @@ router.post('/addfever', (req, res) => {
           jsonWrite(res, result);
           res.send({
             status: 200,
-            message: "登录成功"
+            message: "addfever"
           })
       }
   })
