@@ -70,6 +70,33 @@ router.post('/jiankangma', (req, res) => {
               }
             })
 });
+router.post('/Entry', function (req, res) {
+  var sql=$sql.stu.baobei;
+  var params=req.body;
+  var obj=JSON.stringify(params);
+  console.log(obj);
+  let idstudents=obj.substring(obj.indexOf("ts\":")+7,obj.indexOf(",")-3);
+  let begin_place=obj.substring(obj.indexOf("begin_place\":")+14,obj.indexOf("end_place")-3);
+  let end_place=obj.substring(obj.indexOf("end_place\":")+12,obj.indexOf("reason")-3);
+  let description=obj.substring(obj.indexOf("reason\":")+8,obj.indexOf("description")-2);
+  let reason=obj.substring(obj.indexOf("description\":")+14,obj.indexOf("}")-1);
+  console.log(idstudents,begin_place,end_place,description,reason);
+  conn.query(sql,[idstudents,begin_place,end_place,description,reason], function (err, result) {
+    if (err) {
+      console.log(err);
+      return res.send({
+        status: 500,
+        message: "upload failed"
+      })
+    }
+    if (result) {
+      jsonWrite(res, result);
+      res.send({
+        status: 200,
+        message: "upload success"
+      })
+    }})
+})
 router.post('/xingchengma', (req, res) => {
   var sql = $sql.stu.xingchengma;
   var params = req.body;

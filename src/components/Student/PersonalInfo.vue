@@ -61,6 +61,7 @@ export default {
   name: "PersonalInfo",
   data() {
     return {
+      
       msg: "Hello Vue!"
     };
   }
