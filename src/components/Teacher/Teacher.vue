@@ -13,7 +13,6 @@
       <el-dropdown>
         <i class="el-icon-setting" style="margin-right: 18px"></i>
       </el-dropdown>
-      <span>工号0001</span>
     </el-header>
     </el-container>
 	<br>
@@ -82,8 +81,22 @@
 export default {
   name: "student",
   data() {
-    return {
-    };
+  return {
+  name: "student",
+  tableData: [
+        {
+          idstudents: "",
+    }
+      ],
+};
+  },
+  created() {
+    this.getIDstu();
+  },
+  methods: {
+    getIDstu() { 
+          this.$message.success(localStorage.getItem("idteachers"))
+    },
   }
 };
 </script>

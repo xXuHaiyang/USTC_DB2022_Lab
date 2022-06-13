@@ -57,10 +57,15 @@
 // 注意，此处我的文件上传接口是前端逻辑，后端连接时需要在fileList中提取文件（如：直接提取文件名，将文件名提取出来，提交给后端，检查没问题直接数据库赋值1）
 
 <script>
+//import { writeHeapSnapshot } from 'v8';
+
 export default {
   data() {
     return {
-      fileList: []
+      user: {
+        idstudents: localStorage.getItem("idstudents"),
+      },
+      fileList: [],
     };
   },
   methods: {
@@ -81,13 +86,49 @@ export default {
       return this.$confirm(`确定移除 ${file.name}？`);
     },
     jiankangma(){
-
+      let params = {
+        idstudents: this.user.idstudents,
+      };
+      this.$http
+          .post("http://localhost:3000/api/stu/jiankangma", { params: params })
+          .then(response => {
+            console.log(response);
+            console.log("--------");
+            //this.$router.push({ path: "/Student" });
+            if (response.status == 200) {
+            this.$message.success('上传成功');} else {
+              this.$message.error("上传错误");
+            }});
     },
     xingchengma(){
-
+      let params = {
+        idstudents: this.user.idstudents,
+      };
+      this.$http
+          .post("http://localhost:3000/api/stu/xingchengma", { params: params })
+          .then(response => {
+            console.log(response);
+            console.log("--------");
+            //this.$router.push({ path: "/Student" });
+            if (response.status == 200) {
+            this.$message.success('上传成功');} else {
+              this.$message.error("上传错误");
+            }});
     },
     hesuan(){
-
+      let params = {
+        idstudents: this.user.idstudents,
+      };
+      this.$http
+          .post("http://localhost:3000/api/stu/hesuan", { params: params })
+          .then(response => {
+            console.log(response);
+            console.log("--------");
+            //this.$router.push({ path: "/Student" });
+            if (response.status == 200) {
+            this.$message.success('上传成功');} else {
+              this.$message.error("上传错误");
+            }});
     },
   }
 };

@@ -4,8 +4,9 @@ var sqlMap = {
   stu: {
       query: 'select * from students where idstudents=? and password=?',
       add: 'insert into students (idstudents, name, gender,college) values (?,?,?,?)',
-      jiankangma: 'insert into students (jiankangma) values (?) where idstudents=? and password=?',
-      xingchengma: 'insert into students (xingchengma) values (?) where idstudents=? and password=?',
+      jiankangma: 'update students set jiankangma =\'r\' where idstudents=? ',
+      xingchengma: 'update students set xingchengma =\'r\' where idstudents=? ',
+      hesuan : 'update students set hesuan =\'r\' where idstudents=? ',
       teacher: 'select * from teachers where idteachers=? and password=?',
       getStu: 'select idstudents,gender,name,college  from students',
       checking: 'select idstudents,name,gender,college,xingchengma,jiankangma,hesuan from students',
