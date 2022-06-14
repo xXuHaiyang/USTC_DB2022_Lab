@@ -272,6 +272,7 @@ router.post('/getTable', (req, res) => {
   var obj=JSON.stringify(params);
   //console.log(obj);
   let idstudents=obj.substring(obj.indexOf("ts\":")+7,obj.indexOf("}}")-3);
+  console.log(idstudents)
   conn.query(sql,[idstudents], function (err, data) {
       if (err) {console.log(err)    
         return res.send({

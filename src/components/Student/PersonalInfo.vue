@@ -86,7 +86,7 @@ export default {
       let params = {
         idstudents: this.user.idstudents,
       }
-      this.$http.post("http://localhost:3000/api/stu/right_cross",{ params: params }).then(res => {
+      this.$http.post("http://localhost:3000/api/stu/kuaxiaoqu",{ params: params }).then(res => {
         console.log(res);
         console.log(res.data);
         if(res.data.status == 200){
