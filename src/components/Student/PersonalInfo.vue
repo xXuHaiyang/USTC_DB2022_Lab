@@ -37,7 +37,7 @@
 }
 
 .t {
-	color:rgb(17, 143, 221);
+  color: rgb(17, 143, 221);
 }
 
 .el-aside {
@@ -55,8 +55,8 @@ export default {
   name: "PersonalInfo",
   data() {
     return {
-      user:{
-        idstudents: localStorage.getItem("idstudents"),
+      user: {
+        idstudents: localStorage.getItem("idstudents")
       },
       tableData: [
         {
@@ -71,20 +71,21 @@ export default {
     };
   },
   methods: {
-    onSubmit(){
+    onSubmit() {
       let params = {
-        idstudents: this.user.idstudents,
-      }
-      this.$http.post("http://localhost:3000/api/stu/kuaxiaoqu",{ params: params }).then(res => {
-        console.log(res);
-        console.log(res.data);
-        if(res.data.status == 200){
-          this.$message.success("更改成功");
-        }
-        else{
-          this.$message.error("更改失败");
-        }
-      });
+        idstudents: this.user.idstudents
+      };
+      this.$http
+        .post("http://localhost:3000/api/stu/kuaxiaoqu", { params: params })
+        .then(res => {
+          console.log(res);
+          console.log(res.data);
+          if (res.data.status == 200) {
+            this.$message.success("更改成功");
+          } else {
+            this.$message.error("更改失败");
+          }
+        });
     }
   }
 };

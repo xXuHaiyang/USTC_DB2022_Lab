@@ -1,90 +1,84 @@
 <template>
   <div class="login">
-  <div class="parent">
-    <Children  :idstudents="idstudents" >
-    <el-container>
-      <!-- <el-header height="200px">
-        <img src="../assets/USTClogo.jpg" alt="">
-	  </el-header> -->
-      <el-container>
-        <el-aside width="500px">
-          <!-- <img src="../assets/leftlogin.jpg" alt="..." width="400px" height = "600px" justify="center"> -->
-        </el-aside>
-        <el-main>
-          <el-header>
-            <img
-              id="header-img"
-              src="https://passport.ustc.edu.cn/images/ucas/logo.svg"
-              height="125px"
-            />
-          </el-header>
-          <div class="login-wrap">
-            <el-row type="flex" justify="center">
-              <el-form
-                ref="loginForm"
-                :model="user"
-                :rules="rules"
-                status-icon
-                label-width="80px"
-              >
-                <h3>USTC健康平台</h3>
-                <hr />
-                <el-form-item prop="idstudents" label="用户名">
-                  <el-input
-                    v-model="user.idstudents"
-                    placeholder="请输入用户名"
-                    prefix-icon
-                  ></el-input>
-                </el-form-item>
-                <el-form-item id="password" prop="password" label="密码">
-                  <el-input
-                    v-model="user.password"
-                    show-password
-                    placeholder="请输入密码"
-                  ></el-input>
-                </el-form-item>
-                <div>
-                  <span>您的身份</span>
-                  <el-radio v-model="position" label="1">student</el-radio>
-                  <el-radio v-model="position" label="2">teacher</el-radio>
-				        <el-radio v-model="position" label="3">admin</el-radio>
-                </div>
-                <el-form-item>
-                  <el-button
-                    type="primary"
-                    icon="el-icon-upload"
-                    @click="doLogin()"
-                    >登 录</el-button
+    <div class="parent">
+      <Children :idstudents="idstudents">
+        <el-container>
+          <el-container>
+            <el-aside width="500px">
+            </el-aside>
+            <el-main>
+              <el-header>
+                <img
+                  id="header-img"
+                  src="https://passport.ustc.edu.cn/images/ucas/logo.svg"
+                  height="125px"
+                />
+              </el-header>
+              <div class="login-wrap">
+                <el-row type="flex" justify="center">
+                  <el-form
+                    ref="loginForm"
+                    :model="user"
+                    :rules="rules"
+                    status-icon
+                    label-width="80px"
                   >
-                </el-form-item>
-              </el-form>
-              <!-- 此处引入组件 -->
-            </el-row>
-          </div>
-        </el-main>
-      </el-container>
-    </el-container>
-    </Children>
-  </div>
+                    <h3>USTC健康平台</h3>
+                    <hr />
+                    <el-form-item prop="idstudents" label="用户名">
+                      <el-input
+                        v-model="user.idstudents"
+                        placeholder="请输入用户名"
+                        prefix-icon
+                      ></el-input>
+                    </el-form-item>
+                    <el-form-item id="password" prop="password" label="密码">
+                      <el-input
+                        v-model="user.password"
+                        show-password
+                        placeholder="请输入密码"
+                      ></el-input>
+                    </el-form-item>
+                    <div>
+                      <span>您的身份</span>
+                      <el-radio v-model="position" label="1">student</el-radio>
+                      <el-radio v-model="position" label="2">teacher</el-radio>
+                    </div>
+                    <el-form-item>
+                      <el-button
+                        type="primary"
+                        icon="el-icon-upload"
+                        @click="doLogin()"
+                        >登 录</el-button
+                      >
+                    </el-form-item>
+                  </el-form>
+                  <!-- 此处引入组件 -->
+                </el-row>
+              </div>
+            </el-main>
+          </el-container>
+        </el-container>
+      </Children>
+    </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-import DailyCheck from './Student/DailyCheck'
+import DailyCheck from "./Student/DailyCheck";
 export default {
   name: "login",
   components: {
-    DailyCheck,
+    DailyCheck
   },
   data() {
     return {
       user: {
         msg: "Welcome to Your USTC-Acid-DB App",
         idstudents: "",
-        password: "",
+        password: ""
       },
-	  position: ""
+      position: ""
     };
   },
   created() {
@@ -103,10 +97,10 @@ export default {
       } else if (!this.user.password) {
         this.$message.error("请输入密码！");
         return;
-      } else if(this.position != 1){
+      } else if (this.position != 1) {
         //校验用户名和密码是否正确;
         //this.$router.push({ path: "/Student" });
-        this.$message.success("准备去query");
+        // this.$message.success("老师您好，登录成功！");
         //var name = this.idstudents;
         //var passw = this.password;
         this.$http
@@ -117,7 +111,11 @@ export default {
             console.log("--------");
             //this.$router.push({ path: "/Student" });
             if (response.status == 200) {
-              localStorage.setItem("idteachers", JSON.stringify(this.user.idstudents));
+              localStorage.setItem(
+                "idteachers",
+                JSON.stringify(this.user.idstudents)
+              );
+			  this.$message.success("老师您好，登录成功！");
               this.$router.push({ path: "/Teacher" });
             } else {
               this.$message.error("您输入的用户名或密码错误！");
@@ -126,7 +124,7 @@ export default {
       } else {
         //校验用户名和密码是否正确;
         //this.$router.push({ path: "/Student" });
-        this.$message.success("准备去query");
+        // this.$message.success("同学您好，登录成功！");
         //var name = this.idstudents;
         //var passw = this.password;
         this.$http
@@ -137,7 +135,11 @@ export default {
             console.log("--------");
             //this.$router.push({ path: "/Student" });
             if (response.data.status == 200) {
-              localStorage.setItem("idstudents", JSON.stringify(this.user.idstudents));
+              localStorage.setItem(
+                "idstudents",
+                JSON.stringify(this.user.idstudents)
+              );
+			  this.$message.success("同学您好，登录成功！");
               this.$router.push({ path: "/Student" });
             } else {
               this.$message.error("您输入的用户名或密码错误！");
