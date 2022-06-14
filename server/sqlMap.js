@@ -11,6 +11,7 @@ var sqlMap = {
       getStu: 'select idstudents,gender,name,college  from students',
       checking: 'select idstudents,name,gender,college,xingchengma,jiankangma,hesuan from students',
       baobei: 'insert into baobei_term (idstudents, begin_place, end_place, description, reason) values (?,?,?,?,?)',
+      cross_campus: 'insert into cross_campus (idstudents,right_cross) values(?,1)',
   },
   fever:{
     check: 'insert into fever_or_not (idstudents, at_school, fever, `check`) values (?,?,?,?)',

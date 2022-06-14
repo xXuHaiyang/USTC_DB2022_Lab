@@ -145,6 +145,28 @@ router.post('/hesuan', (req, res) => {
             }
           })
 });
+router.post('/kuaxiaoqu', (req, res)=>{
+  var sql = $sql.stu.cross_campus;
+  var params = req.body;
+  //console.log(params);
+  var obj=JSON.stringify(params);
+  let idstudents=obj.substring(obj.indexOf("ts\":")+7,obj.indexOf("}}")-3);
+  conn.query(sql,[idstudents], function (err, result) {
+      if (err) {
+          console.log(err);
+          return res.send({
+            status: 500,
+            message: "upload failed"
+            })
+            }
+      if (result) {
+          jsonWrite(res, result);
+          res.send({
+            status: 200,
+            message: "upload success"
+          })
+        }})
+})
 router.post('/query',(req,res)=>{
   var sql = $sql.stu.query;
   var params = req.body;

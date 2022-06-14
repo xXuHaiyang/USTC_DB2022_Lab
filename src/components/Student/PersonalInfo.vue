@@ -2,6 +2,7 @@
   <div class="layout" clearfix>
     <el-container>
       <el-main>
+        <el-button type="primary" @click="onSubmit">更改跨校区状态</el-button>
         <el-descriptions
           title="用户信息"
           direction="vertical"
@@ -61,9 +62,27 @@ export default {
   name: "PersonalInfo",
   data() {
     return {
-      
-      msg: "Hello Vue!"
+      user: {
+        idstudents: localStorage.getItem("idstudents"),
+      },
     };
+  },
+  methods: {
+    onSubmit(){
+      let params = {
+        idstudents: this.user.idstudents,
+      }
+      this.$http.post("http://localhost:3000/api/stu/kuaxiaoqu",{ params: params }).then(res => {
+        console.log(res);
+        console.log(res.data);
+        if(res.data.status == 200){
+          this.$message.success("更改成功");
+        }
+        else{
+          this.$message.error("更改失败");
+        }
+      });
+    }
   }
 };
 </script>
