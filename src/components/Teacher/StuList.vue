@@ -31,7 +31,7 @@
     </el-dialog>
     <!-- 此处我只实现了前端的数据传输(v-model)，放在data里，需要传到后端的table中去 -->
     <el-button type="success" @click="uploadtoDatatable()"
-      >查看所有学生</el-button
+      >刷新学生名单</el-button
     >
     <br />
     <br />

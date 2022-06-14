@@ -2,8 +2,8 @@
   <div class="layout" clearfix>
     <el-container>
       <el-main>
-        <el-button type="primary" @click="onSubmit()">更改跨校区状态</el-button>
-        <el-button type="primary" @click="uploadtoDatatable()">更改表格状态</el-button>
+        <el-button type="primary" @click="onSubmit()">申请跨校区</el-button>
+        <el-button type="primary" @click="uploadtoDatatable()">实时查看状态</el-button>
         <el-table :data="tableData" stripe style="width: 100%" class="t">
           <el-table-column prop="check" label="每日报备">
           </el-table-column>
