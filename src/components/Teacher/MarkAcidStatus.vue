@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-button type="success" @click="uploadtoDatatable()"
-      >查看所有学生状态</el-button
+      >刷新学生名单</el-button
     >
     <br />
     <br />
