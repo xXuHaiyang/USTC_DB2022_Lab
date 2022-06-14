@@ -8,15 +8,15 @@
     <el-table :data="tableData" stripe style="width: 100%">
       <el-table-column prop="idstudents" label="学号" width="150">
       </el-table-column>
-      <el-table-column prop="name" label="姓名" width="150"> </el-table-column>
-      <el-table-column prop="gender" label="性别" width="150">
+      <el-table-column prop="begin_place" label="开始地点" width="150"> </el-table-column>
+      <el-table-column prop="end_place" label="结束地点" width="150">
       </el-table-column>
-      <el-table-column prop="college" label="所属院系" width="150">
+      <el-table-column prop="description" label="描述" width="150">
       </el-table-column>
-	  <el-table-column prop="status" label="两码及核酸状态" width="150">
+	  <el-table-column prop="reason" label="原因" width="150">
       </el-table-column>
-	  <el-table-column prop="reason" label="出入校理由" width="150">
-      </el-table-column>
+	  <el-table-column prop="checked" label="是否审批通过" width="150">
+    </el-table-column>
     </el-table>
   </div>
 </template>
@@ -36,19 +36,19 @@ export default {
       tableData: [
         {
           idstudents: "",
-          name: "",
-          gender: "",
-          college: "",
-		  status:"",
-		  reason:""
+          begin_place: "",
+          end_place: "",
+          description: "",
+		      reason:"",
+		      checked:""
         }
       ],
       AddNew: false,
       form: {
         idstudents: "",
-        name: "",
-        gender: "",
-        college: ""
+        begin_place: "",
+        end_place: "",
+        description: ""
       },
       formLabelWidth: "120px"
     };
@@ -62,10 +62,10 @@ export default {
     uploadtoDatatable() {
       let params = {};
       this.$http
-        .post("http://localhost:3000/api/stu/getStu", { params: params })
+        .post("http://localhost:3000/api/stu/getTable2", { params: params })
         .then(res => {
           console.log(res);
-          this.tableData = res.data;
+          this.tableData = res.body.data;
         });
     },
     deleteRow(index, rows) {
@@ -75,9 +75,9 @@ export default {
       //rows.add(index,1);
       let params = {
         idstudents: this.form.idstudents,
-        name: this.form.name,
-        gender: this.form.gender,
-        college: this.form.college
+        begin_place: this.form.begin_place,
+        end_place: this.form.end_place,
+        description: this.form.description
       };
       this.$http
         .post("http://localhost:3000/api/stu/addStu", { params: params })

@@ -12,6 +12,8 @@ var sqlMap = {
       checking: 'select idstudents,name,gender,college,xingchengma,jiankangma,hesuan from students',
       baobei: 'insert into baobei_term (idstudents, begin_place, end_place, description, reason) values (?,?,?,?,?)',
       cross_campus: 'insert into cross_campus (idstudents,right_cross) values(?,1)',
+      getTable: 'select `check`, jiankangma,xingchengma,hesuan,right_cross,checked from cross_campus join students join fever_or_not join baobei_term on cross_campus.idstudents=students.idstudents and fever_or_not.idstudents=students.idstudents and baobei_term.idstudents=students.idstudents where students.idstudents=?',
+      getTable2: 'select * from baobei_term',
   },
   fever:{
     check: 'insert into fever_or_not (idstudents, at_school, fever, `check`) values (?,?,?,?)',

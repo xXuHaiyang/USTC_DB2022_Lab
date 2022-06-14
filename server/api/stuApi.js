@@ -237,6 +237,65 @@ router.post('/teacher',(req,res)=>{
         }
     })
 });
+router.post('/getTable', (req, res) => {
+  var sql = $sql.stu.getTable;
+  var params = req.body;
+  //console.log(params);
+  var obj=JSON.stringify(params);
+  //console.log(obj);
+  let idstudents=obj.substring(obj.indexOf("ts\":")+7,obj.indexOf("}}")-3);
+  conn.query(sql,[idstudents], function (err, data) {
+      if (err) {console.log(err)    
+        return res.send({
+           status: 400,
+           message: "获取失败"
+         })   
+   }
+   //console.log(typeof row)
+   //let data = JSON.stringify(row)
+   //console.log(data)
+   //var data= JSON.stringify(data)
+   console.log(data)
+   if(data.length>0){
+   //res.end(data)
+   res.send({
+       data,
+       status: 200,
+       message: "获取成功",
+   })
+}})}
+);
+router.post('/getTable2', (req, res) => {
+  var sql = $sql.stu.getTable2;
+  var params = req.body;
+  //console.log(params);
+  var obj=JSON.stringify(params);
+  //console.log(obj);
+  //let idteacher=obj.substring(obj.indexOf("er\":")+5,obj.indexOf("}}")-3);
+  conn.query(sql, function (err, data) {
+    if(err){
+      console.log(err)    
+      return res.send({
+         status: 400,
+         message: "获取失败"
+       })   
+ }
+ //console.log(typeof row)
+ //let data = JSON.stringify(row)
+ //console.log(data)
+ //var data= JSON.stringify(data)
+ console.log(data)
+ if(data.length>0){
+ //res.end(data)
+ res.send({
+     data,
+     status: 200,
+     message: "获取成功",
+ })
+ }
+  }
+  );
+});
 router.post('/getStu',(req,res)=>{
   var sql = $sql.stu.getStu;
   //var params = req.body;

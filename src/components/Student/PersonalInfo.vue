@@ -2,9 +2,10 @@
   <div class="layout" clearfix>
     <el-container>
       <el-main>
-        <el-button type="primary" @click="onSubmit">更改跨校区状态</el-button>
+        <el-button type="primary" @click="onSubmit()">更改跨校区状态</el-button>
+        <el-button type="primary" @click="uploadtoDatatable()">更改表格状态</el-button>
         <el-table :data="tableData" stripe style="width: 100%" class="t">
-          <el-table-column prop="meiribaobei" label="每日报备">
+          <el-table-column prop="check" label="每日报备">
           </el-table-column>
         </el-table>
         <el-table :data="tableData" stripe style="width: 100%" class="t">
@@ -17,11 +18,11 @@
           <el-table-column prop="hesuan" label="核酸"> </el-table-column>
         </el-table>
         <el-table :data="tableData" stripe style="width: 100%" class="t">
-          <el-table-column prop="kuaxiaoqu" label="是否可跨校区">
+          <el-table-column prop="right_cross" label="是否可跨校区">
           </el-table-column>
         </el-table>
         <el-table :data="tableData" stripe style="width: 100%" class="t">
-          <el-table-column prop="jinchuxiao" label="是否可进出校">
+          <el-table-column prop="checked" label="是否可进出校">
           </el-table-column>
         </el-table>
       </el-main>
@@ -60,22 +61,32 @@ export default {
       },
       tableData: [
         {
-          meiribaobei: "已报备/未报备",
-          jiankangma: "已上传/...",
-          xingchengma: "已上传/...",
-          hesuan: "已上传/...",
-          kuaxiaoqu: "可跨校区/不可跨校区",
-          jinchuxiao: "审核已通过/未通过/未申请/正在审核中"
+          check: "",
+          jiankangma: "",
+          xingchengma: "",
+          hesuan: "",
+          right_cross: "",
+          checked: ""
         }
       ]
     };
   },
   methods: {
+    uploadtoDatatable(){
+      let params = {
+        idstudents: this.user.idstudents,
+      }
+      this.$http.post("http://localhost:3000/api/stu/getTable", {params: params}).then(res => {
+        console.log(res);
+        console.log(res.body.data);
+        this.tableData = res.body.data;
+      });
+    },
     onSubmit(){
       let params = {
         idstudents: this.user.idstudents,
       }
-      this.$http.post("http://localhost:3000/api/stu/kuaxiaoqu",{ params: params }).then(res => {
+      this.$http.post("http://localhost:3000/api/stu/right_cross",{ params: params }).then(res => {
         console.log(res);
         console.log(res.data);
         if(res.data.status == 200){
