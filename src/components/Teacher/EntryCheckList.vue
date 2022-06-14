@@ -8,25 +8,37 @@
     <el-table :data="tableData" stripe style="width: 100%">
       <el-table-column prop="idstudents" label="学号" width="150">
       </el-table-column>
-      <el-table-column prop="begin_place" label="开始地点" width="150"> </el-table-column>
+      <el-table-column prop="begin_place" label="开始地点" width="150">
+      </el-table-column>
       <el-table-column prop="end_place" label="结束地点" width="150">
       </el-table-column>
       <el-table-column prop="description" label="描述" width="150">
       </el-table-column>
-	  <el-table-column prop="reason" label="原因" width="150">
+      <el-table-column prop="reason" label="原因" width="150">
       </el-table-column>
-	  <el-table-column prop="checked" label="是否审批通过" width="150">
-    </el-table-column>
+      <el-table-column prop="checked" label="是否审批通过" width="150">
+        <template slot-scope="scope">
+          <el-button
+            size="mini"
+            type="success"
+            @click="pass(scope.$index, scope.row)"
+            >是</el-button
+          >
+          <el-button
+            size="mini"
+            type="danger"
+            @click="reject(scope.$index, scope.row)"
+            >否</el-button
+          >
+        </template>
+      </el-table-column>
     </el-table>
   </div>
 </template>
 
-// 注意我们这里的逻辑是：
-// student 3 tables:
-// 1. id pw school
-// 2. id -> 健康码 行程码
-// 3. 每日报备 健康码 行程码 -> 自动显示可跨校区，在学生界面
-// 4. 满足2 + 进出校申请 -> 老师审批
+// 注意我们这里的逻辑是： // student 3 tables: // 1. id pw school // 2. id ->
+健康码 行程码 // 3. 每日报备 健康码 行程码 -> 自动显示可跨校区，在学生界面 // 4.
+满足2 + 进出校申请 -> 老师审批
 
 <script>
 import axios from "axios";
@@ -39,8 +51,8 @@ export default {
           begin_place: "",
           end_place: "",
           description: "",
-		      reason:"",
-		      checked:""
+          reason: "",
+          checked: ""
         }
       ],
       AddNew: false,
