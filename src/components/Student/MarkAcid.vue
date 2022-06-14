@@ -11,7 +11,9 @@
       :on-exceed="handleExceed"
       :file-list="fileList"
     >
-      <el-button size="middle" type="primary" @click="jiankangma()">点击上传健康码</el-button>
+      <el-button size="middle" type="primary" @click="jiankangma()"
+        >点击上传健康码</el-button
+      >
       <div slot="tip" class="el-upload__tip">
         只能上传jpg/png文件，且不超过500kb
       </div>
@@ -28,7 +30,9 @@
       :on-exceed="handleExceed"
       :file-list="fileList"
     >
-      <el-button size="middle" type="primary" @click="xingchengma()">点击上传15天内行程码</el-button>
+      <el-button size="middle" type="primary" @click="xingchengma()"
+        >点击上传15天内行程码</el-button
+      >
       <div slot="tip" class="el-upload__tip">
         只能上传jpg/png文件，且不超过500kb
       </div>
@@ -45,7 +49,9 @@
       :on-exceed="handleExceed"
       :file-list="fileList"
     >
-      <el-button size="middle" type="primary" @click="hesuan()">点击上传核酸检测证明</el-button>
+      <el-button size="middle" type="primary" @click="hesuan()"
+        >点击上传核酸检测证明</el-button
+      >
       <div slot="tip" class="el-upload__tip">
         只能上传jpg/png/pdf文件，且不超过2Mb
       </div>
@@ -54,7 +60,8 @@
   </div>
 </template>
 
-// 注意，此处我的文件上传接口是前端逻辑，后端连接时需要在fileList中提取文件（如：直接提取文件名，将文件名提取出来，提交给后端，检查没问题直接数据库赋值1）
+//
+注意，此处我的文件上传接口是前端逻辑，后端连接时需要在fileList中提取文件（如：直接提取文件名，将文件名提取出来，提交给后端，检查没问题直接数据库赋值1）
 
 <script>
 //import { writeHeapSnapshot } from 'v8';
@@ -63,9 +70,9 @@ export default {
   data() {
     return {
       user: {
-        idstudents: localStorage.getItem("idstudents"),
+        idstudents: localStorage.getItem("idstudents")
       },
-      fileList: [],
+      fileList: []
     };
   },
   methods: {
@@ -85,51 +92,57 @@ export default {
     beforeRemove(file, fileList) {
       return this.$confirm(`确定移除 ${file.name}？`);
     },
-    jiankangma(){
+    jiankangma() {
       let params = {
-        idstudents: this.user.idstudents,
+        idstudents: this.user.idstudents
       };
       this.$http
-          .post("http://localhost:3000/api/stu/jiankangma", { params: params })
-          .then(response => {
-            console.log(response);
-            console.log("--------");
-            //this.$router.push({ path: "/Student" });
-            if (response.status == 200) {
-            this.$message.success('上传成功');} else {
-              this.$message.error("上传错误");
-            }});
+        .post("http://localhost:3000/api/stu/jiankangma", { params: params })
+        .then(response => {
+          console.log(response);
+          console.log("--------");
+          //this.$router.push({ path: "/Student" });
+          if (response.status == 200) {
+            this.$message.success("上传成功");
+          } else {
+            this.$message.error("上传错误");
+          }
+        });
     },
-    xingchengma(){
+    xingchengma() {
       let params = {
-        idstudents: this.user.idstudents,
+        idstudents: this.user.idstudents
       };
       this.$http
-          .post("http://localhost:3000/api/stu/xingchengma", { params: params })
-          .then(response => {
-            console.log(response);
-            console.log("--------");
-            //this.$router.push({ path: "/Student" });
-            if (response.status == 200) {
-            this.$message.success('上传成功');} else {
-              this.$message.error("上传错误");
-            }});
+        .post("http://localhost:3000/api/stu/xingchengma", { params: params })
+        .then(response => {
+          console.log(response);
+          console.log("--------");
+          //this.$router.push({ path: "/Student" });
+          if (response.status == 200) {
+            this.$message.success("上传成功");
+          } else {
+            this.$message.error("上传错误");
+          }
+        });
     },
-    hesuan(){
+    hesuan() {
       let params = {
-        idstudents: this.user.idstudents,
+        idstudents: this.user.idstudents
       };
       this.$http
-          .post("http://localhost:3000/api/stu/hesuan", { params: params })
-          .then(response => {
-            console.log(response);
-            console.log("--------");
-            //this.$router.push({ path: "/Student" });
-            if (response.status == 200) {
-            this.$message.success('上传成功');} else {
-              this.$message.error("上传错误");
-            }});
-    },
+        .post("http://localhost:3000/api/stu/hesuan", { params: params })
+        .then(response => {
+          console.log(response);
+          console.log("--------");
+          //this.$router.push({ path: "/Student" });
+          if (response.status == 200) {
+            this.$message.success("上传成功");
+          } else {
+            this.$message.error("上传错误");
+          }
+        });
+    }
   }
 };
 </script>

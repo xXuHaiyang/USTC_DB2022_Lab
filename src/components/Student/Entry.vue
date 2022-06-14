@@ -94,7 +94,7 @@ export default {
         fromregion: "", //出校校区
         toregion: "", // 前往校区
         type: [], //出校理由
-        desc: ""  // 其他的理由
+        desc: "" // 其他的理由
       }
     };
   },
@@ -109,20 +109,20 @@ export default {
             end_place: this.ruleForm.toregion,
             reason: this.ruleForm.type,
             description: this.ruleForm.desc
-          }
+          };
           this.$http
-          .post("http://localhost:3000/api/stu/Entry", { params: params })
-          .then(response => {
-            //this.$message.success("登录成功！");
-            console.log(response);
-            console.log("--------");
-            //this.$router.push({ path: "/Student" });
-            if (response.status == 200) {
-              this.$message.success("申请成功！");
-            } else {
-              this.$message.error("申请失败！");
-            }
-          });
+            .post("http://localhost:3000/api/stu/Entry", { params: params })
+            .then(response => {
+              //this.$message.success("登录成功！");
+              console.log(response);
+              console.log("--------");
+              //this.$router.push({ path: "/Student" });
+              if (response.status == 200) {
+                this.$message.success("申请成功！");
+              } else {
+                this.$message.error("申请失败！");
+              }
+            });
         } else {
           console.log("error submit!!");
           return false;
