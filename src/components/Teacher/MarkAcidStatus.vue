@@ -40,8 +40,8 @@ export default {
           college: "",
           jiankangma: "",
           xingchengma: "",
-          hesuan: ""
-        }
+          hesuan: "",
+        },
       ],
       AddNew: false,
       form: {
@@ -51,9 +51,9 @@ export default {
         college: "",
         xingchengma: "",
         jiankangma: "",
-        hesuan: ""
+        hesuan: "",
       },
-      formLabelWidth: "120px"
+      formLabelWidth: "120px",
     };
   },
   created() {
@@ -66,7 +66,7 @@ export default {
       let params = {};
       this.$http
         .post("http://localhost:3000/api/stu/checking", { params: params })
-        .then(res => {
+        .then((res) => {
           console.log(res);
           console.log(res.body.data);
           this.tableData = res.body.data;
@@ -74,7 +74,7 @@ export default {
     },
     deleteRow(index, rows) {
       rows.splice(index, 1);
-    }
-  }
+    },
+  },
 };
 </script>

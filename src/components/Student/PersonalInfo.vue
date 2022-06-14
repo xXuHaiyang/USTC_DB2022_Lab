@@ -2,38 +2,27 @@
   <div class="layout" clearfix>
     <el-container>
       <el-main>
-        <el-descriptions
-          title="用户信息"
-          direction="vertical"
-          :column="1"
-          border
-          justify="center"
-        >
-          <el-descriptions-item label="每日报备状态"
-            ><el-tag size="small"
-              >今日已报备/今日未报备</el-tag
-            ></el-descriptions-item
-          >
-          <el-descriptions-item label="健康码状态" :span="2"
-            ><el-tag size="small"
-              >今日已提交/今日未提交</el-tag
-            ></el-descriptions-item
-          >
-          <el-descriptions-item label="行程码状态">
-            <el-tag size="small">今日已提交/今日未提交</el-tag>
-          </el-descriptions-item>
-          <el-descriptions-item label="核酸状态"
-            ><el-tag size="small"
-              >本周已提交/本周未提交</el-tag
-            ></el-descriptions-item
-          >
-          <el-descriptions-item label="是否可跨校区"
-            ><el-tag size="small">是/否</el-tag></el-descriptions-item
-          >
-          <el-descriptions-item label="是否可进出校">
-            <el-tag size="small">未申请/审核中/审核通过/审核未通过</el-tag>
-          </el-descriptions-item>
-        </el-descriptions>
+        <el-table :data="tableData" stripe style="width: 100%" class="t">
+          <el-table-column prop="meiribaobei" label="每日报备">
+          </el-table-column>
+        </el-table>
+        <el-table :data="tableData" stripe style="width: 100%" class="t">
+          <el-table-column prop="jiankangma" label="健康码"> </el-table-column>
+        </el-table>
+        <el-table :data="tableData" stripe style="width: 100%" class="t">
+          <el-table-column prop="xingchengma" label="行程码"> </el-table-column>
+        </el-table>
+        <el-table :data="tableData" stripe style="width: 100%" class="t">
+          <el-table-column prop="hesuan" label="核酸"> </el-table-column>
+        </el-table>
+        <el-table :data="tableData" stripe style="width: 100%" class="t">
+          <el-table-column prop="kuaxiaoqu" label="是否可跨校区">
+          </el-table-column>
+        </el-table>
+        <el-table :data="tableData" stripe style="width: 100%" class="t">
+          <el-table-column prop="jinchuxiao" label="是否可进出校">
+          </el-table-column>
+        </el-table>
       </el-main>
     </el-container>
   </div>
@@ -44,6 +33,10 @@
   /* background-color: #1874ed;
   color: rgb(37, 126, 243); */
   line-height: 80px;
+}
+
+.t {
+	color:rgb(17, 143, 221);
 }
 
 .el-aside {
@@ -61,8 +54,16 @@ export default {
   name: "PersonalInfo",
   data() {
     return {
-      
-      msg: "Hello Vue!"
+      tableData: [
+        {
+          meiribaobei: "已报备/未报备",
+          jiankangma: "已上传/...",
+          xingchengma: "已上传/...",
+          hesuan: "已上传/...",
+          kuaxiaoqu: "可跨校区/不可跨校区",
+          jinchuxiao: "审核已通过/未通过/未申请/正在审核中"
+        }
+      ]
     };
   }
 };
