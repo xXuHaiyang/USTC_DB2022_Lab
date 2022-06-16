@@ -7,61 +7,40 @@ presentation:
 ---
 
 <!-- slide -->
-# Lab2 Douban
+# DB Lab
 
 <!-- slide -->
-## Requirement:
+## 小组分工:
 
-1. text info in json format 
-2. images
-
-<!-- slide -->
-First, as a human being, 
-I decide to go through the 
-procedure myself.
+1. 王祥祺：后端
+2. 徐海阳：前端
 
 <!-- slide -->
--- 1. ping the homepage of Douban
+## 使用技术：
+1. Vue 前端
+2. MySQL 后端数据库
 
 <!-- slide -->
--- 2. click and find top 250
+## 核酸检测系统
+1. 学生端
+2. 教师端
 
 <!-- slide -->
--- 3. 100 pages -- 25 films per page
+## 学生端
+1. 学生端的登录 Login
+2. 个人信息 PersonalInfo
+3. 每日报备 DailyCheck
+4. 两码及核酸 MarkAcid
+5. 初入校申请 Entry
 
 <!-- slide -->
--- 4. each film has text info url and image info url
-	
-	-- open the text url and find the entire text
-	
-	-- download the image url directly
+## 教师端
+1. 教师端的登录 Login
+2. 学生名单导入导出 StuList
+3. 学生信息查询（两码核酸等）MarkAcidStatus
+4. 出入校申请审批 EntryCheckList
 
 <!-- slide -->
--- 5. dump all the info and save the images
+## 欢迎提问
 
-<!-- slide -->
-Therefore, we know how the procedure works:
 
-<!-- slide -->
--- 1. home page -> find the top 250
-
-<!-- slide -->
--- 2. top 250 -> find all the pages
-
-<!-- slide -->
--- 3. pages -> find all the movies
-
-<!-- slide -->
--- 4. movies -> find all the text info urls and image info urls
-
-<!-- slide -->
--- 5. text info -> open the text url, find all the text info and load by json
-
-<!-- slide -->
--- 6. image info -> download directly according to the image url
-
-<!-- slide -->
--- 7. save the required obejcts
-
-<!-- slide -->
-Finally, implement details
